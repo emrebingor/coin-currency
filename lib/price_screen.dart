@@ -28,6 +28,26 @@ class _PriceScreenState extends State<PriceScreen> {
         });
   }
 
+  Map<String, String> coinValues = {};
+
+  bool isWaiting = false;
+
+
+  void getData() async {
+    isWaiting = true;
+
+    try {
+      var data = await CoinData().getCoinData(selectedCurreny);
+
+      isWaiting = false;
+      setState((){
+        coinValues = data;
+      });
+    } catch(e){
+      print(e);
+    }
+  }
+
 
 
   @override
