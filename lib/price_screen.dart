@@ -1,4 +1,5 @@
 import 'package:coin_currency_flutter_app/coin_data.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'coin_data.dart';
 
@@ -27,6 +28,26 @@ class _PriceScreenState extends State<PriceScreen> {
             selectedCurreny = value.toString();
           });
         });
+  }
+
+
+  CupertinoPicker IOSPicker(){
+    List<Text> pickerItems = [];
+    for(String currency in currencyList){
+      pickerItems.add(Text(currency));
+    }
+
+    return CupertinoPicker(
+      itemExtent: 32.0,
+      backgroundColor: Colors.lightBlue,
+      onSelectedItemChanged: (selectedIndex){
+        setState((){
+          selectedCurreny = currencyList[selectedIndex];
+          getData();
+        });
+      },
+      children: pickerItems,
+    );
   }
 
   Map<String, String> coinValues = {};
