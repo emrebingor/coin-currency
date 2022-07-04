@@ -20,8 +20,9 @@ class _PriceScreenState extends State<PriceScreen> {
           Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: <Widget>[
-              CryptoCard(),
-              
+              CryptoCard(currency: 'USD', coin: 'BTC',),
+              CryptoCard(currency: 'USD', coin: 'ETH',),
+              CryptoCard(currency: 'USD', coin: 'LTC',),
             ],
           ),
           Container(),
@@ -32,9 +33,11 @@ class _PriceScreenState extends State<PriceScreen> {
 }
 
 class CryptoCard extends StatelessWidget {
-  const CryptoCard({
-    Key? key,
-  }) : super(key: key);
+
+  CryptoCard({required this.currency, required this.coin});
+
+  String currency;
+  String coin;
 
   @override
   Widget build(BuildContext context) {
@@ -47,7 +50,7 @@ class CryptoCard extends StatelessWidget {
         child: Padding(
           padding: EdgeInsets.symmetric(horizontal: 28.0, vertical: 15.0),
           child: Text(
-            '1USD = ?? BTC',
+            '1 $currency = ?? $coin',
             style: TextStyle(fontSize: 20.0, color: Colors.white),
             textAlign: TextAlign.center,
           ),
