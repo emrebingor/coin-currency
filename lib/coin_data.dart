@@ -1,3 +1,4 @@
+// ignore: import_of_legacy_library_into_null_safe
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 
@@ -32,7 +33,7 @@ const List<String> coinList = [
 ];
 
 const coinAPIUrl = 'https://rest.coinapi.io/v1/exchangerate';
-const apiKey = '4BB20E18-B145-4511-AA3C-11551F455B61';
+const apiKey = 'F7550CDD-FD22-4F52-9B0E-943168B7182E';
 
 
 class CoinData {
