@@ -10,7 +10,7 @@ class PriceScreen extends StatefulWidget {
 }
 
 class _PriceScreenState extends State<PriceScreen> {
-  String selectedCurreny = 'AUD';
+  String selectedCurrency = 'AUD';
 
   DropdownButton<String> androidDropdownButton() {
     List<DropdownMenuItem<String>> dropdownItems = [];
@@ -22,11 +22,11 @@ class _PriceScreenState extends State<PriceScreen> {
       dropdownItems.add(newItem);
     }
     return DropdownButton(
-        value: selectedCurreny,
+        value: selectedCurrency,
         items: dropdownItems,
         onChanged: (value) {
           setState(() {
-            selectedCurreny = value.toString();
+            selectedCurrency = value.toString();
           });
         });
   }
@@ -40,10 +40,10 @@ class _PriceScreenState extends State<PriceScreen> {
 
     return CupertinoPicker(
       itemExtent: 32.0,
-      backgroundColor: Colors.lightBlue,
+      backgroundColor: Colors.deepPurple,
       onSelectedItemChanged: (selectedIndex){
         setState((){
-          selectedCurreny = currencyList[selectedIndex];
+          selectedCurrency = currencyList[selectedIndex];
           getData();
         });
       },
@@ -59,7 +59,7 @@ class _PriceScreenState extends State<PriceScreen> {
     isWaiting = true;
 
     try {
-      var data = await CoinData().getCoinData(selectedCurreny);
+      var data = await CoinData().getCoinData(selectedCurrency);
 
       isWaiting = false;
       setState(() {
@@ -81,7 +81,7 @@ class _PriceScreenState extends State<PriceScreen> {
     return Scaffold(
       appBar: AppBar(
         title: Text('🤑 Coin Ticker'),
-        backgroundColor: Colors.lightBlue,
+        backgroundColor: Colors.deepPurple,
       ),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -93,24 +93,24 @@ class _PriceScreenState extends State<PriceScreen> {
               CryptoCard(
                 coin: 'BTC',
                 value: isWaiting ? '' : coinValues['BTC'].toString(),
-                currency: selectedCurreny,
+                currency: selectedCurrency,
               ),
               CryptoCard(
                 coin: 'ETH',
                 value: isWaiting ? '' : coinValues['ETH'].toString(),
-                currency: selectedCurreny,
+                currency: selectedCurrency,
               ),
               CryptoCard(
                 coin: 'LTC',
                 value: isWaiting ? '' : coinValues['LTC'].toString(),
-                currency: selectedCurreny,
+                currency: selectedCurrency,
               ),
             ],
           ),
           Container(
             height: 150.0,
             alignment: Alignment.center,
-            color: Colors.lightBlueAccent,
+            color: Colors.deepPurple,
             padding: EdgeInsets.only(bottom: 30.0),
             child: Platform.isIOS ? IOSPicker() : androidDropdownButton(),
           ),
@@ -132,7 +132,7 @@ class CryptoCard extends StatelessWidget {
     return Padding(
       padding: EdgeInsets.fromLTRB(18.0, 18.0, 18.0, 0),
       child: Card(
-        color: Colors.lightBlueAccent,
+        color: Colors.deepPurple,
         elevation: 5.0,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(10.0),
